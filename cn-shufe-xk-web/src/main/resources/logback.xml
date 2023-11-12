@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="utf-8">
+            <pattern>
+                ###|||%d{yyyy-MM-dd HH:mm:ss.SSS}|||%level|||%thread|||%logger{0}--->%msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.alibaba">
+        <level value="info"/>
+    </logger>
+
+    <appender name ="Async" class= "ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>-1</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <queueSize>10240</queueSize>
+        <maxFlushTime>3000</maxFlushTime>
+        <appender-ref ref ="Console"/>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="Async" />
+    </root>
+
+</configuration>
