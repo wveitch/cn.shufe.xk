@@ -3,6 +3,7 @@ package cn.shufe.xk.web.controller;
 import cn.shufe.xk.service.api.AccountApi;
 import cn.shufe.xk.service.api.model.AccountInfo;
 import cn.shufe.xk.web.dto.AccountDto;
+import cn.shufe.xk.web.dto.BaseResult;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +22,13 @@ public class AccountController {
     private AccountApi accountApi;
 
     @GetMapping("/getAccountByName")
-    public AccountDto getAccountByName(String name) {
+    public BaseResult<AccountDto> getAccountByName(String name) {
         AccountInfo accountInfo = accountApi.queryAccountByName(name);
         log.info("test:{}", JSON.toJSONString(accountInfo));
-        return Objects.isNull(accountInfo) ? null : AccountDto.builder()
+        return Objects.isNull(accountInfo) ? BaseResult.fail() : BaseResult.success(AccountDto.builder()
                 .account(accountInfo.getAccount())
                 .passwd(accountInfo.getPasswd())
-                .build();
+                .build());
 //        return AccountDto.builder().build();
     }
 }
