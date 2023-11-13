@@ -11,9 +11,9 @@ target/
 *.iws
 *.iml
 *.ipr
-.idea
+.idea/
 
-### Eclipse ###
+### Eclipse ###l
 .apt_generated
 .classpath
 .factorypath
