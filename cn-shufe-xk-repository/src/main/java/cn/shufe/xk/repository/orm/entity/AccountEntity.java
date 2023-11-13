@@ -1,6 +1,7 @@
 package cn.shufe.xk.repository.orm.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @TableName("account")
 public class AccountEntity {
-    @TableField(value = "id")
+    @TableId(value = "id")
     private String id;
     @TableField(value = "account")
     private String account;
