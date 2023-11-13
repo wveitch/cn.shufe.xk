@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -21,7 +22,7 @@ public class AccountApiImpl implements AccountApi {
         queryWrapper.eq(AccountEntity::getAccount, name);
         queryWrapper.eq(AccountEntity::getIsDeleted, 0);
         AccountEntity accountEntity = iAccountService.getOne(queryWrapper);
-        return AccountInfo.builder()
+        return Objects.isNull(accountEntity) ? null : AccountInfo.builder()
                 .id(accountEntity.getId())
                 .account(accountEntity.getAccount())
                 .role(accountEntity.getRole())

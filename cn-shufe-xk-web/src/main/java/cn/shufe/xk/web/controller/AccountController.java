@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 @Slf4j
 @RestController
@@ -23,7 +24,7 @@ public class AccountController {
     public AccountDto getAccountByName(String name) {
         AccountInfo accountInfo = accountApi.queryAccountByName(name);
         log.info("test:{}", JSON.toJSONString(accountInfo));
-        return AccountDto.builder()
+        return Objects.isNull(accountInfo) ? null : AccountDto.builder()
                 .account(accountInfo.getAccount())
                 .passwd(accountInfo.getPasswd())
                 .build();
