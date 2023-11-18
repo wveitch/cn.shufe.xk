@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Slf4j
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/apis/account")
 public class AccountController {
 
     @Resource
